@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import QuestionForm
-from .models import QuestionModel, CategoryModel
+from .models import QuestionModel, CategoryModel,AnswerModel
 from django.http import HttpResponse
 from django.views.generic import CreateView, ListView
 
@@ -61,6 +61,16 @@ def up_vote(request,id):
     instance.question_votes +=1
     instance.save()
     return redirect('qna:read')
+
+def question_detail(request,id):
+    questions=QuestionModel.objects.get(id=id)
+    answers= AnswerModel.objects.filter(question=id)
+    d={
+        'question':questions,
+        'answers':answers
+    }
+
+    return render(request,'details.html',d)
 
 
 def questionlist(request):

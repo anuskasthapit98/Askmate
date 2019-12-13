@@ -7,25 +7,26 @@
     <title>Document</title>
 </head>
 <body>
+    
+    <h1>List of questions</h1>
     {% for q in question_list %}
-    <h2>{{q.title}} </h2>
-    <h2>{{q.question_desc}} </h2>
-    <h2>{{q.timestamp}} </h2>
-    <h2>{{q.question_votes}} </h2>
-    <img src="../../media/{{q.question_img}}"
-    width="200px"
-    height="200px"
-   
-    />
+    <h3><a href="{% url 'qna:details' q.id %}" >title: {{q.title}} </a> </h3>
+    <h3>Question description: {{q.question_desc}} </h3>
+    Timestamp: {{q.timestamp}} 
+    <h4>Votes:  {{q.question_votes}} </h4> 
+    <img src="../../media/{{q.question_img}}" width="100px" height="100px"/>
     <br><br>
     <a href="{% url 'qna:update' q.id %}"><button>UPDATE</button></a>
     <a href="{% url 'qna:delete' q.id %}"><button >DELETE</button></a>
-    <a href="{% url 'qna:upvote' q.id %}"><button >UpVote</button></a>
-
-
-    {%endfor%}
-  
-    <a href="{% url 'qna:addquestion' %}"><button >ADD</button></a>
+    <a href="{% url 'qna:upvote' q.id %}"><button >UPVOTE</button></a>
     
+    <br> <br>
+    Answer:<br>
+    <textarea name="answer" cols="100px" >Enter text here...</textarea>
+    <button>Submit</button></a>
+    {%endfor%}
+    <br><br>
+    <a href="{% url 'qna:addquestion' %}"><button >ADD NEW QUESTION</button></a>
+</table>
 </body>
 </html>
