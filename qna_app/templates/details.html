@@ -4,6 +4,8 @@
         
             this is detail of question
     {%endblock%}
+
+    
         
     {% block main_body%}
     
@@ -12,13 +14,22 @@
                    <h5>{{question.title}}</h5> <br>
                    <h5>Votes:{{question.question_votes}}</h5> <br>
                    <h5>Posted By:{{question.posted_by}}</h5> <br>
-                   Ansnwer:
+                   <a href="{% url 'qna:update' question.id %}"><button>UPDATE</button></a>
+                   <a href="{% url 'qna:delete' question.id %}"><button >DELETE</button></a>
+                   <a href="{% url 'qna:upvote' question.id %}"><button >UPVOTE</button></a>
+
+            </div>
+        </div>
+            <div class='card'>
+            <div class = 'card-body'>
+                   <h5>Ansnwer:</h5>
+                   
                    {% for ans in answers%}
-                   {{ans.answer_desc}}<br>
+                   <br>{{ans.answer_desc}}<br>
                    {%endfor%}
             </div>
         </div>
-         
+        
     {%endblock%}
 
     <!-- this is question:{{question.title}}<br><br>

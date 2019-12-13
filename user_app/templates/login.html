@@ -1,24 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static%}
 <head>
+    <link href="{%static 'css/login.css'%}" rel="stylesheet"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login Page</title>
 </head>
 <body>
-<form action="" method="POST">
-        {% csrf_token %}
-    <div class="login text-center">
-    <h1>Login to your account</h1></div><br>
-  Email:<br>
-  <input type="text" class="form-control" name="email">
-  <br>
-  Password:<br>
-  <input type="password" class="form-control" name="pass">
-  <!-- <small><a href="#">Forgot password</a></small> -->
-  <br><br>
-    <button type="submit" name="login" class="btn btn-success">Login</button>
+    <!-- <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <form action="" method="POST">
+               {% csrf_token %}
+               <div class="fadeIn first">
+             <h1>Login to your account</h1></div><br>
+    
+           
+            <input type="text"  name="email" id="login" class="fadeIn second" placeholder="Email">
+           
+            
+            <input type="password"  name="pass" id="password" class="fadeIn third" placeholder="Password">
+            <small><a href="#">Forgot password</a></small>
+           
+            <input type="submit" class="fadeIn fourth" value="Log In">
+
+              <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+              </div>
 </form>
+</div>
+</div> -->
+
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <h2>Login to your account</h2>
+      </div>
+  
+      <!-- Login Form -->
+      <form action="" method="POST">
+          {% csrf_token %}
+        <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
+        <input type="text" id="password" class="fadeIn third" name="pass" placeholder="password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>
+
+
 </body>
 </html>

@@ -1,9 +1,13 @@
+
 {%extends 'base.html'%}
+
 
     {%block title%}
         
             this is new title
     {%endblock%}
+
+    
         
     {% block main_body%}
     {%for ques in question%}
@@ -11,7 +15,10 @@
             <div class='card-body'>
                    <a href="{%url 'qna:details' ques.id%}"><h5>{{ques.question_desc}}</h5></a> <br>
                    
-            </div>
+
+            </div>  
         </div>
+
+
      {%endfor%}       
     {%endblock%}

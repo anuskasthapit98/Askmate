@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .forms import QuestionForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import QuestionForm,AnswerForm
 from .models import QuestionModel, CategoryModel,AnswerModel
 from django.http import HttpResponse
 from django.views.generic import CreateView, ListView
@@ -14,7 +14,7 @@ def addquestion(request):
         if form.is_valid:
             try:
                 form.save()
-                return redirect('qna:read')
+                return redirect('qna:lists')
             except:
                 return HttpResponse('failed')
         else:            
@@ -53,14 +53,14 @@ def delete_question(request,id):
     
     question = QuestionModel.objects.get(id=id)
     question.delete()
-    return redirect('qna:read')
+    return redirect('qna:lists')
 
 def up_vote(request,id):
 
     instance=QuestionModel.objects.get(id=id)
     instance.question_votes +=1
     instance.save()
-    return redirect('qna:read')
+    return redirect('qna:details')
 
 def question_detail(request,id):
     questions=QuestionModel.objects.get(id=id)
@@ -73,8 +73,11 @@ def question_detail(request,id):
     return render(request,'details.html',d)
 
 def ques_list(request):
-    question= QuestionModel.objects.all()
-    return render (request,'ques_list.html',{'question':question})
+    if('id'in request.session):
+        question= QuestionModel.objects.all()
+        return render (request,'ques_list.html',{'question':question})
+    else:
+        return redirect('user:login')
 
 def questionlist(request):
     if('id'in request.session):

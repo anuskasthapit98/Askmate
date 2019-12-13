@@ -13,7 +13,7 @@ def login_auth(request):
                 request.session['email']= user.email
                 request.session['id']= user.id
                 request.session['name']= user.name
-                return redirect ('qna:read')
+                return redirect ('qna:lists')
         else:
             return HttpResponse('wrong credentials')
 
