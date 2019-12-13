@@ -72,11 +72,16 @@ def question_detail(request,id):
 
     return render(request,'details.html',d)
 
+def ques_list(request):
+    question= QuestionModel.objects.all()
+    return render (request,'ques_list.html',{'question':question})
 
 def questionlist(request):
-    lists = QuestionModel.objects.all()
-    return render (request,"questionmodel_list.html",{'question_list':lists})
-
+    if('id'in request.session):
+        lists = QuestionModel.objects.all()
+        return render (request,"questionmodel_list.html",{'question_list':lists})
+    else:
+        return redirect('user:login')
 
 class QuestionModelCreateView(CreateView):
     model = QuestionModel
@@ -85,3 +90,9 @@ class QuestionModelCreateView(CreateView):
 class QuestionModelListView(ListView):
     model = QuestionModel
     queryset = QuestionModel.objects.all()
+
+def test(request):
+    return render(request,'test.html')
+
+# def detail(request):
+#     return render(request,'detail.html')

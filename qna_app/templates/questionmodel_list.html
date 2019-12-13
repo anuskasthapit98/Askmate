@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static%}
 <head>
+    <link href="{%static 'css/main.css'%}" rel="stylesheet"/>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -8,7 +11,9 @@
 </head>
 <body>
     
+    <h2> HELLO!!!!!, {{request.session.name}}</h2>
     <h1>List of questions</h1>
+    <a href="{% url 'user:logout'%}">Logout</a>
     {% for q in question_list %}
     <h3><a href="{% url 'qna:details' q.id %}" >title: {{q.title}} </a> </h3>
     <h3>Question description: {{q.question_desc}} </h3>

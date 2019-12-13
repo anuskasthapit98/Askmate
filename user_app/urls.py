@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import login_auth, logout_auth
 
+app_name='user'
 urlpatterns = [
+    path('login/',login_auth, name='login'),
+     path('logout/',logout_auth, name='logout')
 ]
+

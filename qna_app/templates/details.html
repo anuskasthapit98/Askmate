@@ -1,17 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=details of questionn, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    this is question:{{question.title}}<br><br>
+  {%extends 'base.html'%}
+
+    {%block title%}
+        
+            this is detail of question
+    {%endblock%}
+        
+    {% block main_body%}
+    
+        <div class='card'>
+            <div class='card-body'>
+                   <h5>{{question.title}}</h5> <br>
+                   <h5>Votes:{{question.question_votes}}</h5> <br>
+                   <h5>Posted By:{{question.posted_by}}</h5> <br>
+                   Ansnwer:
+                   {% for ans in answers%}
+                   {{ans.answer_desc}}<br>
+                   {%endfor%}
+            </div>
+        </div>
+         
+    {%endblock%}
+
+    <!-- this is question:{{question.title}}<br><br>
 
     this is answer: 
     {% for ans in answers%}
     {{ans.answer_desc}}<br>
-    {%endfor%}
-</body>
-</html>
+    {%endfor%} -->
